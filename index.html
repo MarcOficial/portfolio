@@ -650,58 +650,6 @@
   </div>
 </section>
 
-<section id="money" class="pad bg-b">
-
-  <div class="blob" style="top:-40px;right:15%;width:420px;height:300px;background:rgba(34,211,238,.06);"></div>
-  <div class="blob" style="bottom:-60px;left:10%;width:380px;height:380px;background:rgba(217,70,239,.06);"></div>
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-label">Mercados</span>
-      <h2>Divisas en <span class="neon-grad">Vivo</span></h2>
-      <p>Referencia de tipos de cambio frente al euro, con la cotización estimada de Robux para tus encargos.</p>
-    </div>
-
-    <div class="money-topbar">
-      <span class="live-flag"><span class="live-dot pulse"></span>Mercado simulado · cada 4s</span>
-      <span class="live-flag" id="moneyMetaTop">Actualizado hace <span id="moneyUpdated">0</span>s</span>
-    </div>
-
-    <div class="money-grid">
-      <div class="pair-list" id="pairList"><!-- pair-cards se generan por JS --></div>
-
-      <div class="money-main">
-        <div class="money-main-head">
-          <div>
-            <div class="mm-title"><span class="money-flag" id="mmFlag">🇺🇸</span><span id="mmName">EUR / USD</span><span class="mm-chip" id="mmChip">Fiat</span></div>
-            <div class="mm-rate" id="mmRate">1.0800</div>
-            <div class="mm-change up" id="mmChange">+0.00%</div>
-          </div>
-        </div>
-
-        <div class="money-chart-wrap"><svg id="mmChart" viewBox="0 0 600 150" preserveAspectRatio="none"></svg></div>
-
-        <div class="money-stats-row">
-          <div class="stat-box"><div class="lbl">Apertura</div><div class="val" id="mmOpen">—</div></div>
-          <div class="stat-box"><div class="lbl">Máx sesión</div><div class="val" id="mmHigh">—</div></div>
-          <div class="stat-box"><div class="lbl">Mín sesión</div><div class="val" id="mmLow">—</div></div>
-          <div class="stat-box"><div class="lbl">Refresco</div><div class="val">4s</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="money-table-wrap">
-      <table class="money-table">
-        <thead>
-          <tr><th>Par</th><th>Precio</th><th>Cambio</th><th>Máx</th><th>Mín</th></tr>
-        </thead>
-        <tbody id="moneyTableBody"><!-- filas por JS --></tbody>
-      </table>
-    </div>
-
-    <p class="money-meta">Base real vía open.er-api.com · variación en pantalla simulada para efecto en vivo · Robux es una referencia orientativa, no un dato de mercado real.</p>
-  </div>
-</section>
-
 <section id="pagos" class="pad bg-a">
   <div class="blob" style="top:-40px;left:20%;width:500px;height:300px;background:rgba(34,197,94,.04);"></div>
   <div class="blob" style="bottom:0;right:10%;width:400px;height:400px;background:rgba(141,0,255,.05);"></div>
@@ -789,7 +737,6 @@
         <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#roadmap">Roadmap</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#money">Money</a></li>
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -833,17 +780,6 @@
     tagEl.style.transition = 'opacity .35s ease';
   }
 
-  // --- Money: mercado con sidebar, gráfico y tabla ---
-  (function(){
-    const CURRENCIES = [
-      { code:'USD',   name:'EUR / USD',   flag:'🇺🇸', base:1.08,  dec:4, chip:'Fiat', real:true  },
-      { code:'GBP',   name:'EUR / GBP',   flag:'🇬🇧', base:0.86,  dec:4, chip:'Fiat', real:true  },
-      { code:'JPY',   name:'EUR / JPY',   flag:'🇯🇵', base:171.5, dec:2, chip:'Fiat', real:true  },
-      { code:'MXN',   name:'EUR / MXN',   flag:'🇲🇽', base:20.9,  dec:2, chip:'Fiat', real:true  },
-      { code:'ARS',   name:'EUR / ARS',   flag:'🇦🇷', base:1450,  dec:1, chip:'Fiat', real:true  },
-      { code:'BRL',   name:'EUR / BRL',   flag:'🇧🇷', base:6.1,   dec:3, chip:'Fiat', real:true  },
-      { code:'ROBUX', name:'EUR / Robux', flag:'🎮', base:87,    dec:0, chip:'Referencia', real:false }
-    ];
 
     const state = {};
     CURRENCIES.forEach(c => {
@@ -853,8 +789,6 @@
     let secondsAgo = 0;
 
     const pairListEl = document.getElementById('pairList');
-    const tbodyEl = document.getElementById('moneyTableBody');
-    const updatedEl = document.getElementById('moneyUpdated');
     const chartEl = document.getElementById('mmChart');
 
     function fmt(code, val){
