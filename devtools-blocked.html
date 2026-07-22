@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 — Acceso Denegado | Nexus Bots Creations</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo-perfil-marc.png">
+    <style>
+        :root {
+            --red: #ef4444;
+            --red-dim: rgba(239, 68, 68, 0.08);
+            --bg: #030408;
+            --card: rgba(13, 14, 20, 0.95);
+            --border: rgba(239, 68, 68, 0.2);
+            --text: #e2e8f0;
+            --muted: #64748b;
+            --green: #10b981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(239, 68, 68, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(239, 68, 68, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 25s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .glow {
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.06) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            animation: pulse 5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.18) 2px,
+                rgba(0, 0, 0, 0.18) 4px
+            );
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            width: 90%;
+            align-items: center;
+        }
+
+        .security-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .shield-icon {
+            width: 86px;
+            height: 86px;
+            background: var(--red-dim);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.75rem;
+            font-size: 2.75rem;
+            animation: shieldPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes shieldPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3); }
+            50% { box-shadow: 0 0 0 25px rgba(239, 68, 68, 0); }
+        }
+
+        .error-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--red);
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            padding: 0.45rem 1.25rem;
+            border-radius: 99px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 span { color: var(--red); }
+
+        .description {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--red);
+            color: white;
+            padding: 1rem 2.2rem;
+            border-radius: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            justify-content: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+        }
+
+        .back-btn:hover {
+            background: #dc2626;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(239, 68, 68, 0.4);
+        }
+
+        .incident-info {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .incident-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .incident-row:last-child { border-bottom: none; }
+        .incident-row .label { color: var(--muted); }
+        .incident-row .value { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--red); }
+        .incident-row .value.green { color: var(--green); }
+
+        .code-terminal {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            font-family: 'JetBrains Mono', monospace;
+            backdrop-filter: blur(20px);
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .terminal-bar {
+            background: rgba(255,255,255,0.02);
+            padding: 1.1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.r { background: #ff5f56; }
+        .dot.y { background: #ffbd2e; }
+        .dot.g { background: #27c93f; }
+
+        .terminal-label {
+            margin-left: auto;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .code-block {
+            padding: 2rem;
+            font-size: 0.82rem;
+            line-height: 2.0;
+            height: 480px;
+            overflow: hidden;
+            position: relative;
+            text-align: left;
+        }
+
+        .code-block::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(transparent, var(--card));
+        }
+
+        .ln { color: rgba(255,255,255,0.1); margin-right: 1.5rem; display: inline-block; width: 24px; text-align: right; user-select: none; }
+        .kw { color: #c084fc; }
+        .fn { color: #60a5fa; }
+        .st { color: #4ade80; }
+        .nm { color: #fb923c; }
+        .cm { color: #475569; font-style: italic; }
+        .op { color: #e2e8f0; }
+        .rd { color: #f87171; font-weight: bold; }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 14px;
+            background: var(--red);
+            vertical-align: middle;
+            animation: blink 1.2s step-end infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--red);
+            padding: 0.65rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            z-index: 100;
+            letter-spacing: 1px;
+            box-shadow: 0 -10px 30px rgba(239, 68, 68, 0.25);
+            color: #ffffff;
+        }
+        .status-bar .left { display: flex; align-items: center; gap: 1rem; }
+        .status-bar .blink { animation: blink 1s step-end infinite; }
+
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+            .code-terminal { display: none; }
+            h1 { font-size: 2rem; }
+            .security-panel { padding: 3rem 1.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+
+    <div class="container">
+        <div class="security-panel">
+            <div class="shield-icon">🛡️</div>
+            <div class="error-code">ERROR 403 — ACCESO DENEGADO</div>
+            <h1>Herramienta <span>Bloqueada</span></h1>
+            <p class="description">
+                Se ha detectado un intento de acceso a herramientas de inspección restringidas en Nexus Bots Creations.
+                Esta acción ha sido registrada localmente en tu sesión.
+            </p>
+
+            <a href="index.html" class="back-btn">
+                ← Volver a MarcOficial23
+            </a>
+
+            <div class="incident-info">
+                <div class="incident-row">
+                    <span class="label">Incidente ID</span>
+                    <span class="value" id="incident-id">NBC-000000</span>
+                </div>
+                <div class="incident-row">
+                    <span class="label">Timestamp</span>
+                    <span class="value" id="timestamp">--</span>
+                </div>
+                <div class="incident-row">
+                    <span class="label">Acción</span>
+                    <span class="value">DevTools Inspection</span>
+                </div>
+                <div class="incident-row">
+                    <span class="label">Estado</span>
+                    <span class="value">BLOQUEADO</span>
+                </div>
+                <div class="incident-row">
+                    <span class="label">Plataforma</span>
+                    <span class="value green">Nexus Bots Creations</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="code-terminal">
+            <div class="terminal-bar">
+                <span class="dot r"></span>
+                <span class="dot y"></span>
+                <span class="dot g"></span>
+                <span class="terminal-label">sentinel_core.nbc // READ ONLY</span>
+            </div>
+            <div class="code-block">
+<span class="ln">1</span><span class="cm">// Nexus Bots Creations — System Sentinel v4.2.1</span><br>
+<span class="ln">2</span><span class="cm">// © 2026 Marc Productions. All Rights Reserved.</span><br>
+<span class="ln">3</span><span class="cm">// ACCESS VIOLATION LOGGED — THREAT LEVEL: HIGH</span><br>
+<span class="ln">4</span><br>
+<span class="ln">5</span><span class="kw">import</span> <span class="op">{ SecurityMatrix, ThreatEngine }</span> <span class="kw">from</span> <span class="st">'@nexusbots/sentinel'</span><span class="op">;</span><br>
+<span class="ln">6</span><span class="kw">import</span> <span class="op">{ encrypt, hashSHA512 }</span> <span class="kw">from</span> <span class="st">'@nexusbots/crypto'</span><span class="op">;</span><br>
+<span class="ln">7</span><br>
+<span class="ln">8</span><span class="kw">const</span> <span class="nm">SENTINEL_KEY</span> <span class="op">=</span> <span class="st">'0x4NBC91F2A'</span><span class="op">;</span><br>
+<span class="ln">9</span><span class="kw">const</span> <span class="nm">THREAT_LEVEL</span> <span class="op">=</span> <span class="nm">ThreatEngine</span><span class="op">.</span><span class="fn">CRITICAL</span><span class="op">;</span><br>
+<span class="ln">10</span><br>
+<span class="ln">11</span><span class="kw">async function</span> <span class="fn">handleViolation</span><span class="op">(</span><span class="nm">incident</span><span class="op">) {</span><br>
+<span class="ln">12</span>  <span class="kw">const</span> <span class="nm">hash</span> <span class="op">=</span> <span class="kw">await</span> <span class="fn">hashSHA512</span><span class="op">(</span><span class="nm">incident</span><span class="op">.</span><span class="nm">userId</span> <span class="op">+</span> <span class="nm">Date</span><span class="op">.</span><span class="fn">now</span><span class="op">());</span><br>
+<span class="ln">13</span>  <span class="kw">const</span> <span class="nm">payload</span> <span class="op">= {</span><br>
+<span class="ln">14</span>    <span class="nm">id</span><span class="op">:</span>    <span class="nm">hash</span><span class="op">.</span><span class="fn">slice</span><span class="op">(</span><span class="nm">0</span><span class="op">,</span> <span class="nm">16</span><span class="op">),</span><br>
+<span class="ln">15</span>    <span class="nm">ts</span><span class="op">:</span>    <span class="nm">incident</span><span class="op">.</span><span class="nm">timestamp</span><span class="op">,</span><br>
+<span class="ln">16</span>    <span class="nm">type</span><span class="op">:</span>  <span class="st">'DEVTOOLS_OPEN'</span><span class="op">,</span><br>
+<span class="ln">17</span>    <span class="nm">sev</span><span class="op">:</span>   <span class="nm">THREAT_LEVEL</span><span class="op">,</span><br>
+<span class="ln">18</span>  <span class="op">};</span><br>
+<span class="ln">19</span>  <span class="kw">await</span> <span class="nm">SecurityMatrix</span><span class="op">.</span><span class="fn">report</span><span class="op">(</span><span class="nm">payload</span><span class="op">);</span><br>
+<span class="ln">20</span>  <span class="fn">blockAccess</span><span class="op">(</span><span class="nm">incident</span><span class="op">.</span><span class="nm">sessionToken</span><span class="op">);</span><br>
+<span class="ln">21</span><span class="op">}</span><br>
+<span class="ln">22</span><br>
+<span class="ln">23</span><span class="kw">function</span> <span class="fn">blockAccess</span><span class="op">(</span><span class="nm">token</span><span class="op">) {</span><br>
+<span class="ln">24</span>  <span class="nm">sessionStorage</span><span class="op">.</span><span class="fn">setItem</span><span class="op">(</span><span class="st">'__nbc_blocked'</span><span class="op">,</span> <span class="fn">btoa</span><span class="op">(</span><span class="nm">token</span><span class="op">));</span><br>
+<span class="ln">25</span>  <span class="nm">SecurityMatrix</span><span class="op">.</span><span class="fn">lockSession</span><span class="op">({</span><br>
+<span class="ln">26</span>    <span class="nm">duration</span><span class="op">:</span> <span class="nm">Infinity</span><span class="op">,</span><br>
+<span class="ln">27</span>    <span class="nm">notify</span><span class="op">:</span>   <span class="kw">true</span><span class="op">,</span><br>
+<span class="ln">28</span>    <span class="nm">log</span><span class="op">:</span>      <span class="st">'PERMANENT'</span><br>
+<span class="ln">29</span>  <span class="op">});</span><br>
+<span class="ln">30</span><span class="op">}</span><br>
+<span class="ln">31</span><br>
+<span class="ln">32</span><span class="rd">// ██████████████████████████████████████████</span><br>
+<span class="ln">33</span><span class="rd">// █  ACCESS DENIED — THREAT LOG ENTRY #4829 █</span><br>
+<span class="ln">34</span><span class="rd">// █  STATUS: SESSION TERMINATED             █</span><br>
+<span class="ln">35</span><span class="rd">// █  ACTION: REPORTED TO SECURITY MATRIX    █</span><br>
+<span class="ln">36</span><span class="rd">// ██████████████████████████████████████████</span><br>
+<span class="ln">37</span><br>
+<span class="ln">38</span><span class="cm">// Incident fingerprint recorded.</span><br>
+<span class="ln">39</span><span class="cm">// Session will be flagged for review.</span><br>
+<span class="ln">40</span><br>
+<span class="ln">41</span><span class="op">}</span> <span class="cursor"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <div class="left">
+            <span class="blink">● ALERTA ACTIVA</span>
+            <span>SYSTEM-SENTINEL v4.2.1</span>
+        </div>
+        <span id="live-time">--:--:--</span>
+    </div>
+
+    <script>
+        document.getElementById('incident-id').textContent =
+            'NBC-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+
+        const now = new Date();
+        document.getElementById('timestamp').textContent =
+            now.toISOString().replace('T', ' ').slice(0, 19);
+
+        const updateClock = () => {
+            document.getElementById('live-time').textContent =
+                new Date().toLocaleTimeString('es-ES', { hour12: false });
+        };
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
