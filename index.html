@@ -6,7 +6,7 @@
 <title>MarcOficial23 · Marc Productions | Nexus Bots Creations</title>
 <meta name="description" content="MarcOficial23 (Marc Productions) · Desarrollador de bots de Discord en Python. Nexus Bots Creations: bots, servidores, liverys y páginas web a medida.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://marcoficial23.vercel.app/">
+<link rel="canonical" href="https://portfolio-three-inky-99.vercel.app/">
 
 <!-- Open Graph -->
 <meta property="og:site_name" content="MarcOficial23 · Marc Productions">
@@ -807,6 +807,49 @@
         setTimeout(()=>{ tagEl.textContent = tags[ti]; tagEl.style.opacity = 1; }, 350);
       }, 3200);
     }
+  })();
+
+  // --- Detección de DevTools ---
+  (function(){
+    let triggered = false;
+    function goBlocked(){
+      if(triggered) return;
+      triggered = true;
+      window.location.href = 'devtools-blocked.html';
+    }
+
+    // Método 1: diferencia de tamaño entre outer/inner (F12 acoplado)
+    const threshold = 160;
+    setInterval(()=>{
+      const widthDiff = window.outerWidth - window.innerWidth;
+      const heightDiff = window.outerHeight - window.innerHeight;
+      if(widthDiff > threshold || heightDiff > threshold){
+        goBlocked();
+      }
+    }, 700);
+
+    // Método 2: retraso del depurador (debugger timing)
+    setInterval(()=>{
+      const t0 = performance.now();
+      // eslint-disable-next-line no-debugger
+      debugger;
+      const t1 = performance.now();
+      if(t1 - t0 > 100){
+        goBlocked();
+      }
+    }, 1200);
+
+    // Método 3: atajos de teclado típicos de inspección
+    document.addEventListener('keydown', (e)=>{
+      const key = e.key;
+      if(key === 'F12'){ e.preventDefault(); goBlocked(); return; }
+      if(e.ctrlKey && e.shiftKey && (key === 'I' || key === 'i' || key === 'J' || key === 'j' || key === 'C' || key === 'c')){
+        e.preventDefault(); goBlocked(); return;
+      }
+      if(e.ctrlKey && (key === 'U' || key === 'u')){ e.preventDefault(); goBlocked(); }
+    });
+
+    document.addEventListener('contextmenu', (e)=> e.preventDefault());
   })();
 
   // --- Nav: resaltar sección activa al hacer scroll ---
