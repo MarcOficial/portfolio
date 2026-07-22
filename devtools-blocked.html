@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>403 — Acceso Denegado | Nexus Bots Creations</title>
+    <title>403 — Acceso Denegado | Marcoficial23</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -322,7 +322,7 @@
             <div class="error-code">ERROR 403 — ACCESO DENEGADO</div>
             <h1>Herramienta <span>Bloqueada</span></h1>
             <p class="description">
-                Se ha detectado un intento de acceso a herramientas de inspección restringidas en Nexus Bots Creations.
+                Se ha detectado un intento de acceso a herramientas de inspección restringidas en MarcOficial23.
                 Esta acción ha sido registrada localmente en tu sesión.
             </p>
 
@@ -333,7 +333,7 @@
             <div class="incident-info">
                 <div class="incident-row">
                     <span class="label">Incidente ID</span>
-                    <span class="value" id="incident-id">NBC-000000</span>
+                    <span class="value" id="incident-id">MO23-000000</span>
                 </div>
                 <div class="incident-row">
                     <span class="label">Timestamp</span>
@@ -349,7 +349,7 @@
                 </div>
                 <div class="incident-row">
                     <span class="label">Plataforma</span>
-                    <span class="value green">Nexus Bots Creations</span>
+                    <span class="value green">MarcOficial23</span>
                 </div>
             </div>
         </div>
@@ -359,17 +359,17 @@
                 <span class="dot r"></span>
                 <span class="dot y"></span>
                 <span class="dot g"></span>
-                <span class="terminal-label">sentinel_core.nbc // READ ONLY</span>
+                <span class="terminal-label">sentinel_core.mo23 // READ ONLY</span>
             </div>
             <div class="code-block">
-<span class="ln">1</span><span class="cm">// Nexus Bots Creations — System Sentinel v4.2.1</span><br>
+<span class="ln">1</span><span class="cm">// MarcOficial23 — System Sentinel v4.2.1</span><br>
 <span class="ln">2</span><span class="cm">// © 2026 Marc Productions. All Rights Reserved.</span><br>
 <span class="ln">3</span><span class="cm">// ACCESS VIOLATION LOGGED — THREAT LEVEL: HIGH</span><br>
 <span class="ln">4</span><br>
-<span class="ln">5</span><span class="kw">import</span> <span class="op">{ SecurityMatrix, ThreatEngine }</span> <span class="kw">from</span> <span class="st">'@nexusbots/sentinel'</span><span class="op">;</span><br>
-<span class="ln">6</span><span class="kw">import</span> <span class="op">{ encrypt, hashSHA512 }</span> <span class="kw">from</span> <span class="st">'@nexusbots/crypto'</span><span class="op">;</span><br>
+<span class="ln">5</span><span class="kw">import</span> <span class="op">{ SecurityMatrix, ThreatEngine }</span> <span class="kw">from</span> <span class="st">'@marcoficial23/sentinel'</span><span class="op">;</span><br>
+<span class="ln">6</span><span class="kw">import</span> <span class="op">{ encrypt, hashSHA512 }</span> <span class="kw">from</span> <span class="st">'@marcoficial23/crypto'</span><span class="op">;</span><br>
 <span class="ln">7</span><br>
-<span class="ln">8</span><span class="kw">const</span> <span class="nm">SENTINEL_KEY</span> <span class="op">=</span> <span class="st">'0x4NBC91F2A'</span><span class="op">;</span><br>
+<span class="ln">8</span><span class="kw">const</span> <span class="nm">SENTINEL_KEY</span> <span class="op">=</span> <span class="st">'0x4MO2391F2A'</span><span class="op">;</span><br>
 <span class="ln">9</span><span class="kw">const</span> <span class="nm">THREAT_LEVEL</span> <span class="op">=</span> <span class="nm">ThreatEngine</span><span class="op">.</span><span class="fn">CRITICAL</span><span class="op">;</span><br>
 <span class="ln">10</span><br>
 <span class="ln">11</span><span class="kw">async function</span> <span class="fn">handleViolation</span><span class="op">(</span><span class="nm">incident</span><span class="op">) {</span><br>
@@ -385,7 +385,7 @@
 <span class="ln">21</span><span class="op">}</span><br>
 <span class="ln">22</span><br>
 <span class="ln">23</span><span class="kw">function</span> <span class="fn">blockAccess</span><span class="op">(</span><span class="nm">token</span><span class="op">) {</span><br>
-<span class="ln">24</span>  <span class="nm">sessionStorage</span><span class="op">.</span><span class="fn">setItem</span><span class="op">(</span><span class="st">'__nbc_blocked'</span><span class="op">,</span> <span class="fn">btoa</span><span class="op">(</span><span class="nm">token</span><span class="op">));</span><br>
+<span class="ln">24</span>  <span class="nm">sessionStorage</span><span class="op">.</span><span class="fn">setItem</span><span class="op">(</span><span class="st">'__mo23_blocked'</span><span class="op">,</span> <span class="fn">btoa</span><span class="op">(</span><span class="nm">token</span><span class="op">));</span><br>
 <span class="ln">25</span>  <span class="nm">SecurityMatrix</span><span class="op">.</span><span class="fn">lockSession</span><span class="op">({</span><br>
 <span class="ln">26</span>    <span class="nm">duration</span><span class="op">:</span> <span class="nm">Infinity</span><span class="op">,</span><br>
 <span class="ln">27</span>    <span class="nm">notify</span><span class="op">:</span>   <span class="kw">true</span><span class="op">,</span><br>
@@ -417,7 +417,7 @@
 
     <script>
         document.getElementById('incident-id').textContent =
-            'NBC-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+            'MO23-' + Math.random().toString(36).substring(2, 10).toUpperCase();
 
         const now = new Date();
         document.getElementById('timestamp').textContent =
